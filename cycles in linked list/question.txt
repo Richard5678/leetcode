@@ -1,0 +1,12 @@
+Question: Given the head of a linked list, determine it contains a cycle
+Estimated difficulty: low
+
+More details on https://leetcode.com/problems/linked-list-cycle/
+
+My solution: cycles.cc
+
+There is a typical extension on this question:
+    Instead of returning a bool value indicating weather the given linked list contains cycle,
+    the question may ask you to return the head of cycle. If there isn't a cycle, return NULL.
+
+My solution: cycles_extension.cc
