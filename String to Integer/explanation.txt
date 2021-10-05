@@ -1,0 +1,7 @@
+This question focuses more on case analysis. 
+My approch uses a lot of boolean variables to store certain states of the program.
+For example, signedReached and digitReached indicates if we have seen signs or digits so far.
+The hard part about this problem was checking overflows. 
+I used variables to store INT_MAX / 10 and INT_MIN / 10 respectively. Then check the last digit of the result.
+One thing I struggled with was I forgot that we shouldn't store the result of calculation inside a int variable.
+When I did that, we will never get an overflow since an int type variable cannot store anything greater than INT_MAX or less than INT_MIN

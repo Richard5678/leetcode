@@ -1,0 +1,16 @@
+My initial idea after seeing this question is that we need some sort of loop that goes over all the numbers in the given vector.
+However, I soon became evident that if we loop over all the possibilities, it would take O(n^3) time which is obviously not ideal.
+
+Based on the structure of a O(n^3) time for loop, I first changed the condition in the for loop to 
+"i < limit - 2 && nums[i] <= 0" since if i >= limit - 2, we don't have a three number combination, 
+and if nums[i] > 0, then all three numbers following it would be all positive which couldn't add up to 0.
+
+The next step is to simply the problem down inside the loop. Our goal is find three numbers that add up to 0.
+Note that the for loop we have loops through all the possible starting number (lowest number in the combination),
+so what we need to do next is to find two numbers that appears after the starting number and add up to -(starting number).
+Our search range for those two numbers would be [i + 1, limit - 1].
+
+Since we know the vector is sorted to be in increasing order, we could start by searching from the two ends in the range of [i + 1, limit - 1].
+Let first = i + 1, last = limit - 1. Then we compute nums[first] + nums[last]. If the result is less than our target -nums[i], 
+then we move first up 1 up obtain a bigger number. If the result is 0, we have found a combination and insert (i, first, last) into the answer vector.
+If the result is greater than one, we move last down 1 to obtain a smaller number. This process continues until first >= last.

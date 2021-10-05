@@ -1,0 +1,29 @@
+When I first saw this question, I had no idea how to do it and the only possible way I saw was 
+storing all the nodes as we iterate through the linked list. 
+However, this approch would take a huge amount of memory which is not applicable.
+
+Now, let's talk about how I solve it eventually:
+I started by initializing two pointers to the head of the linked list. Then one pointer moves two steps
+while the other moves one step at a time. If they meet, a cycle exists.
+The intuition behind this approch is:
+    if a cycles does exist then the faster pointer will evantually by pass the slower pointer.
+    However, note that the faster pointer moves one step faster then the slower pointer,
+    so their distance gets smaller by 1 with each move. Eventually their distance will reach 0 which means they will meet at a node.
+
+See the detailed math explanation of this idea here: https://en.wikipedia.org/wiki/Cycle_detection#Tortoise_and_hare
+
+Another thing we need to make sure we stop move forward when we've reached the end of the linked lists.
+
+So this is essentially I solved the original question.
+
+
+The extension adds an additional layer onto the original question.
+The structure of the while loop does not have to be changed. Inside the if statement we have detected the cycle,
+we need to first find the length of the cycle. We can simply move one of the pointer one step at a time until it meets with the other pointer and use a counter to record how many steps have been taken.
+No we can break this linked list into two parts, the cycle and the tail outside of the cycle. 
+The length of the linked list would be the sum of the length of those two parts. Let l1 denote the length of the tail, and l2 be the length of the cycle.
+We already have l2. Note that the start of the cycle is also the end of linked list without looping over the same node twice.
+So we will set both pointers to head, and move ptr1 l2 steps forward. Then we know that ptr1 is l1 steps away from the end of the linked lists which is also the start of the cycle.
+ptr2 is also l2 steps away from the start of the linked list. So if we move both ptr1 and ptr2 forward one step at a time, we will get the start of the cycle when they meet.
+
+
