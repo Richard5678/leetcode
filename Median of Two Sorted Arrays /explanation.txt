@@ -1,0 +1,15 @@
+This does not seem hard at first sight, but the efficient requirement makes it more complex than it seems.
+One simple solution is to merge the two arrays and take the middle element directly which is O(m + n) efficient.
+The question asks for O(log(m + n)) which gives the hint of performing binary search on the arrays (treat two arrays as one).
+Following this clue, I found that finding the two median of two arrays is the same as break the two arrays into two parts.
+One includes numbers that are greater than the median and the other contains numbers that are less than the median.
+For example, assume we have [1,3,5,7,9], [2,4,6,8] as inputs. Then we can break [1,3,5,7,9] into [1,3] and [7,9] by the rules above.
+[2,4,6,8] is broken into [2,4], [6,8] where the former contains number that are less than the median 5 
+and ther latter contains number that are greater than the median.
+We have effectively broken the each input array into two parts.
+When we have found the partition that breaks the input arrays in a way such that 
+all elements in the former arrays are less than or equal to the latter arrays, then we have found the median.
+
+In my implementation, the variable lower_bound is the maximum number in the former array
+and variable upper_bound is the minimum number in the latter array in the partition. 
+We repeatly perform binary search on the longer input array until we have found a partition such that lower_bound <= upper_bound.
