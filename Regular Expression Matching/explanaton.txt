@@ -1,0 +1,22 @@
+This question seems straight forward at first glance but a sequential model doesn't solve it (not that I am aware of).
+My first thought is to loop through the given character by character and see if the given pattern matches it. 
+However, a problem this procedure faces is how far do I go when matching "*". For example,
+when the given string is "aaa" and the pattern is "aa*a". If I keep matching a under "a*", then when "aaa" goes to the end,
+there is still an "a" at the end of the pattern which rejects the matching. But we can see that if "a*" only matches one 'a', 
+then the pattern accepts the given string.
+
+Usually, when are asked to solve a problem consists of multiple parts (in this case characters) we can break it down and solve it individually.
+This is exactly when I did in my solution.
+I started by creating an (n + 1) by (m + 1) board where n, m are the length of string and pattern respectively.
+Then we fill in the board row by row starting from the left end.
+A grid at row i and column j indicates if the pattern up to index j matches the string up to index i.
+This means, we can fill out the board and the value at [n][m] indicates if the pattern matches the string.
+
+We start filling from [0][0] which gives True since empty pattern matches empty string. 
+Then we move right, for each '*', the truth value at the grid [0][j] is the same as the truth value at [0][j - 2].
+This is because if we can match a string up to index (j - 2), then we can also match up to index j since '*' can match 0 occurence of a char.
+The first column except [0][0] are false since an empty pattern only mathces an empty string.
+
+After filling out the first row and first column, we can start to fill out the rest of the board row by row.
+For each grid, if pattern[j] matches string[i], then [i][j] = [i - 1][j - 1] since 
+[i - 1][j - 1] adding pattern[j] to the pattern and string[i] to the string is just [i][j].

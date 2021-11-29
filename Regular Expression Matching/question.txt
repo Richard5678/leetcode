@@ -1,0 +1,8 @@
+Question: Implement a function that matches the pattern to the given string.
+    '.' matches all characters while '*' following a character matches that character 0 or more times
+
+Estimated difficulty: Hard
+
+More details on https://leetcode.com/problems/regular-expression-matching/
+
+My solution: matching.cc
