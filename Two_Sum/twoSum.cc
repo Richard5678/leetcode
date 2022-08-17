@@ -1,3 +1,4 @@
+// This solution sorts the vector and scan through from both ends
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
